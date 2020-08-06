@@ -1,50 +1,63 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
-import './App.scss';
+
+// Material Components
+import { BottomNavigation, BottomNavigationAction, Container } from '@material-ui/core';
+import { Favorite as FavoriteIcon, Search as SearchIcon, WatchLater as WatchLaterIcon } from '@material-ui/icons';
 
 // Page Components
 import { Favorites } from './Favorites/Favorites';
 import { Movie } from './Movie/Movie';
 import { Later } from './Later/Later';
 import { Search } from './Search/Search';
+import './App.scss';
 
 
-import { BottomNavigation, BottomNavigationAction, Container } from '@material-ui/core';
-import { Favorite as FavoriteIcon, Search as SearchIcon, WatchLater as WatchLaterIcon } from '@material-ui/icons';
+interface IProps {
+}
 
-function App() {
-	return (
-		<Router>
-			<Container className="app">
-				<Switch>
-					<Route path="/movie/:movieId">
-						<Movie/>
-					</Route>
-					<Route path="/favorites">
-						<Favorites/>
-					</Route>
-					<Route path="/later">
-						<Later/>
-					</Route>
-					<Route path="/">
-						<Search/>
-					</Route>
-				</Switch>
+interface IState {
+	route: string;
+}
 
-				<BottomNavigation showLabels>
-					<Link to="/">
-						<BottomNavigationAction label="Discover" icon={<SearchIcon/>}/>
-					</Link>
-					<Link to="/favorites">
-						<BottomNavigationAction label="Favourites" icon={<FavoriteIcon/>}/>
-					</Link>
-					<Link to="/later">
-						<BottomNavigationAction label="Watch Later" icon={<WatchLaterIcon/>}/>
-					</Link>
+class App extends Component<IProps, IState> {
+
+	constructor(props: any) {
+		super(props);
+		this.state = {route: ''}; // init to home route
+
+		this.handleRouteChange = this.handleRouteChange.bind(this);
+	}
+
+	handleRouteChange(event: any, newValue: string) {
+		this.setState({route: newValue});
+	}
+
+	render() {
+		const {route} = this.state;
+
+		return (
+			<Router>
+				<Container className="app" maxWidth="sm">
+					<Switch>
+						<Route path="/movie/:movieId" component={Movie}/>
+						<Route path="/favorites" component={Favorites}/>
+						<Route path="/later" component={Later}/>
+						<Route path="/" component={Search}/>
+					</Switch>
+				</Container>
+				<BottomNavigation className="navigation" value={route} onChange={this.handleRouteChange} showLabels>
+					<BottomNavigationAction component={Link} to="/"
+											value="" label="Discover" icon={<SearchIcon/>}/>
+					<BottomNavigationAction component={Link} to="/favorites"
+											value="favorites" label="Favourites" icon={<FavoriteIcon/>}/>
+					<BottomNavigationAction component={Link} to="/later"
+											value="later" label="Watch Later" icon={<WatchLaterIcon/>}/>
 				</BottomNavigation>
-			</Container>
-		</Router>
-	);
+
+			</Router>
+		);
+	}
 }
 
 export default App;

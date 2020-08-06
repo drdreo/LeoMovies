@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { useParams } from 'react-router-dom';
 
-export class Movie extends React.Component {
+export class Movie extends PureComponent {
 	render() {
 		const {movieId} = useParams();
 

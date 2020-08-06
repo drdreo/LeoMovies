@@ -1,0 +1,10 @@
+.movie {
+  & > * {
+    border-bottom: unset !important;
+  }
+
+  &__poster {
+    padding: 4px;
+    float: left;
+  }
+}

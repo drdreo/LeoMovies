@@ -1,5 +1,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
 The purpose of this project is to showcase my experience with React development for a recruitment assessment.  
+
+It uses data of [TMDB](https://www.themoviedb.org/documentation/api) and is hosted at [Heroku]().
 
 ## Available Scripts
 

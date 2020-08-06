@@ -2,7 +2,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 The purpose of this project is to showcase my experience with React development for a recruitment assessment.  
 
-It uses data of [TMDB](https://www.themoviedb.org/documentation/api) and is hosted at [Heroku]().
+It uses data of [TMDB](https://www.themoviedb.org/documentation/api) and is hosted at [Heroku](https://leomovies.herokuapp.com/).
 
 ## Available Scripts
 

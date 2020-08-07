@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Container, IconButton, InputBase, Paper, Link } from '@material-ui/core';
+import { Container, IconButton, InputBase, Link, Paper } from '@material-ui/core';
 import { Search as SearchIcon } from '@material-ui/icons';
 
 import './Search.scss';
@@ -88,7 +88,8 @@ export class Search extends PureComponent<IProps, IState> {
 				</Paper>
 
 				{isLoading &&
-                <p>Loading...</p>}
+                <p>Loading...</p>
+				}
 
 				{tmdbResponse?.results && <div className="results">
 					{tmdbResponse.results.length > 0 &&

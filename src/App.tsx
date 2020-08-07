@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 
 // Material Components
-import { BottomNavigation, BottomNavigationAction } from '@material-ui/core';
+import { AppBar, BottomNavigation, BottomNavigationAction } from '@material-ui/core';
 import { Favorite as FavoriteIcon, Search as SearchIcon, WatchLater as WatchLaterIcon } from '@material-ui/icons';
 
 // Page Components
@@ -44,14 +44,17 @@ class App extends Component<IProps, IState> {
 					<Route path="/" component={Search}/>
 				</Switch>
 
-				<BottomNavigation className="navigation" value={route} onChange={this.handleRouteChange} showLabels>
-					<BottomNavigationAction component={Link} to="/"
-											value="" label="Discover" icon={<SearchIcon/>}/>
-					<BottomNavigationAction component={Link} to="/favorites"
-											value="favorites" label="Favourites" icon={<FavoriteIcon/>}/>
-					<BottomNavigationAction component={Link} to="/later"
-											value="later" label="Watch Later" icon={<WatchLaterIcon/>}/>
-				</BottomNavigation>
+				<footer className="navigation">
+					<BottomNavigation value={route} onChange={this.handleRouteChange} showLabels>
+						<BottomNavigationAction component={Link} to="/"
+												value="" label="Discover" icon={<SearchIcon/>}/>
+						<BottomNavigationAction component={Link} to="/favorites"
+												value="favorites" label="Favourites" icon={<FavoriteIcon/>}/>
+						<BottomNavigationAction component={Link} to="/later"
+												value="later" label="Watch Later" icon={<WatchLaterIcon/>}/>
+					</BottomNavigation>
+				</footer>
+
 			</Router>
 		);
 	}

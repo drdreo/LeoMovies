@@ -9,6 +9,7 @@ import {
 } from '@material-ui/icons';
 
 import './Row.scss';
+import { Link } from 'react-router-dom';
 
 export interface IRow {
 	popularity: number;
@@ -38,13 +39,15 @@ interface IState {
 
 export class Row extends Component<IProps, IState> {
 
-	state = {
-		open: false,
-		menuAnchor: null,
-	};
 
 	constructor(props: any) {
 		super(props);
+
+		this.state = {
+			open: false,
+			menuAnchor: null,
+		};
+
 		this.toggleRow = this.toggleRow.bind(this);
 		this.openMenu = this.openMenu.bind(this);
 		this.closeMenu = this.closeMenu.bind(this);
@@ -75,7 +78,7 @@ export class Row extends Component<IProps, IState> {
 						</IconButton>
 					</TableCell>
 					<TableCell component="th" scope="row">
-						{row.title}
+						<Link to={'movie/' + row.id}>{row.title}</Link>
 					</TableCell>
 					<Hidden smDown>
 						<TableCell align="right">{row.popularity}</TableCell>

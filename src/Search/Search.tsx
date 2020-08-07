@@ -1,10 +1,11 @@
 import React, { PureComponent } from 'react';
-import { IconButton, InputBase, Paper } from '@material-ui/core';
+import { Container, IconButton, InputBase, Paper } from '@material-ui/core';
 // discover all movies https://api.themoviedb.org/3/discover/movie?api_key=
 // get poster: poster_path  https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg
 import { Search as SearchIcon } from '@material-ui/icons';
 import './Search.scss';
 import { Results } from './Results/Results';
+import { getMovies } from '../movie.service';
 
 interface IProps {
 }
@@ -17,7 +18,6 @@ interface IState {
 }
 
 export class Search extends PureComponent<IProps, IState> {
-	API_KEY = process.env.REACT_APP_TMDB_API_KEY;
 
 	constructor(props: any) {
 		super(props);
@@ -47,19 +47,14 @@ export class Search extends PureComponent<IProps, IState> {
 
 		// check if the user entered a nice string
 		if (query.length > 0) {
-
 			const queryString = encodeURI(query);
-			const API = `https://api.themoviedb.org/3/search/movie?api_key=${this.API_KEY}&language=en-US&query=${queryString}&page=1`;
-			fetch(API)
-				.then(res => res.json())
-				.then(
-					(res) => {
+			getMovies(queryString)
+				.then((res) => {
 						this.setState({
 							isLoading: false,
 							tmdbResponse: res,
 						});
-					},
-					(error) => {
+					}, (error) => {
 						this.setState({
 							isLoading: false,
 							error: error.message,
@@ -73,7 +68,7 @@ export class Search extends PureComponent<IProps, IState> {
 		const {tmdbResponse, isLoading, error} = this.state;
 
 		return (
-			<div>
+			<Container className="app" maxWidth="md">
 				<h1>Welcome</h1>
 				<h3>Discover great movies from TMDB.</h3>
 
@@ -97,9 +92,14 @@ export class Search extends PureComponent<IProps, IState> {
                 <p>Loading...</p>}
 
 				{tmdbResponse?.results && <div className="results">
+					{tmdbResponse.results.length > 0 &&
                     <Results data={tmdbResponse.results}/>
+					}
+					{tmdbResponse.results.length === 0 &&
+                    <p>No movie was found. </p>
+					}
                 </div>}
-			</div>
+			</Container>
 		);
 	}
 }

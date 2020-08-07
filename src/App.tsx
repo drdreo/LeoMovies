@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 
 // Material Components
-import { BottomNavigation, BottomNavigationAction, Container } from '@material-ui/core';
+import { BottomNavigation, BottomNavigationAction } from '@material-ui/core';
 import { Favorite as FavoriteIcon, Search as SearchIcon, WatchLater as WatchLaterIcon } from '@material-ui/icons';
 
 // Page Components
 import { Favorites } from './Favorites/Favorites';
-import { Movie } from './Movie/Movie';
+import { MovieWithRouter } from './Movie/Movie';
 import { Later } from './Later/Later';
 import { Search } from './Search/Search';
 import './App.scss';
@@ -38,14 +38,14 @@ class App extends Component<IProps, IState> {
 
 		return (
 			<Router>
-				<Container className="app" maxWidth="sm">
-					<Switch>
-						<Route path="/movie/:movieId" component={Movie}/>
-						<Route path="/favorites" component={Favorites}/>
-						<Route path="/later" component={Later}/>
-						<Route path="/" component={Search}/>
-					</Switch>
-				</Container>
+
+				<Switch>
+					<Route path="/movie/:movieId" component={MovieWithRouter}/>
+					<Route path="/favorites" component={Favorites}/>
+					<Route path="/later" component={Later}/>
+					<Route path="/" component={Search}/>
+				</Switch>
+
 				<BottomNavigation className="navigation" value={route} onChange={this.handleRouteChange} showLabels>
 					<BottomNavigationAction component={Link} to="/"
 											value="" label="Discover" icon={<SearchIcon/>}/>

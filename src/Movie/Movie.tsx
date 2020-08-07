@@ -53,7 +53,6 @@ class Movie extends Component<IProps, IState> {
 
 	render() {
 		const {movie} = this.state;
-		console.log(movie);
 
 		return (
 			<React.Fragment>

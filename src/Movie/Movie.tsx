@@ -88,8 +88,10 @@ function MovieDetails(props: any) {
 					<h5>{movie.release_date} | {genres} | {movie.runtime}min</h5>
 
 					<div className="movie-details__group">
-						<img className="movie-details__poster" src={'https://image.tmdb.org/t/p/w185/' + movie.poster_path}
-							 alt="Movie poster"/>
+						{movie.poster_path &&
+                        <img className="movie-details__poster" src={'https://image.tmdb.org/t/p/w185/' + movie.poster_path}
+                             alt="Movie poster"/>
+						}
 						<div className="movie-details__overview">
 							{movie.overview}
 						</div>

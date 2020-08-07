@@ -24,8 +24,7 @@ class App extends Component<IProps, IState> {
 
 	constructor(props: any) {
 		super(props);
-		this.state = {route: ''}; // init to home route
-
+		this.state = {route: window.location.pathname.substr(1)}; // init to current path, e.g. "/favorites" remove first "/"
 		this.handleRouteChange = this.handleRouteChange.bind(this);
 	}
 
@@ -38,7 +37,6 @@ class App extends Component<IProps, IState> {
 
 		return (
 			<Router>
-
 				<Switch>
 					<Route path="/movie/:movieId" component={MovieWithRouter}/>
 					<Route path="/favorites" component={Favorites}/>
@@ -54,7 +52,6 @@ class App extends Component<IProps, IState> {
 					<BottomNavigationAction component={Link} to="/later"
 											value="later" label="Watch Later" icon={<WatchLaterIcon/>}/>
 				</BottomNavigation>
-
 			</Router>
 		);
 	}

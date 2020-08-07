@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Box, Collapse, Hidden, IconButton, Menu, MenuItem, TableCell, TableRow, Typography } from '@material-ui/core';
+import { Box, Collapse, Hidden, IconButton, Link, Menu, MenuItem, TableCell, TableRow, Typography } from '@material-ui/core';
 import {
 	Favorite as FavoriteIcon,
 	KeyboardArrowDown as KeyboardArrowDownIcon,
@@ -9,9 +9,9 @@ import {
 } from '@material-ui/icons';
 
 import './Row.scss';
-import { Link } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 
-export interface IRow {
+export interface IMovie {
 	popularity: number;
 	vote_count: number;
 	video: boolean;
@@ -29,16 +29,36 @@ export interface IRow {
 }
 
 interface IProps {
-	row: IRow;
+	row: IMovie;
 }
 
 interface IState {
 	open: boolean;
 	menuAnchor: any;
+	isFavorite: boolean;
 }
 
 export class Row extends Component<IProps, IState> {
 
+	get isFavorite(): boolean {
+		let storedFavs = localStorage.getItem('favorites');
+
+		if (!storedFavs) {
+			return false;
+		}
+		const favorites = [...JSON.parse(storedFavs)];
+		return favorites.some(movie => movie.id === this.props.row.id);
+	}
+
+	get isLater(): boolean {
+		let storedLater = localStorage.getItem('later');
+
+		if (!storedLater) {
+			return false;
+		}
+		const later = [...JSON.parse(storedLater)];
+		return later.some(movie => movie.id === this.props.row.id);
+	}
 
 	constructor(props: any) {
 		super(props);
@@ -46,11 +66,16 @@ export class Row extends Component<IProps, IState> {
 		this.state = {
 			open: false,
 			menuAnchor: null,
+			isFavorite: false,
 		};
 
 		this.toggleRow = this.toggleRow.bind(this);
 		this.openMenu = this.openMenu.bind(this);
 		this.closeMenu = this.closeMenu.bind(this);
+		this.addFavorite = this.addFavorite.bind(this);
+		this.removeFavorite = this.removeFavorite.bind(this);
+		this.addWatchLater = this.addWatchLater.bind(this);
+		this.removeWatchLater = this.removeWatchLater.bind(this);
 	}
 
 	toggleRow() {
@@ -63,6 +88,56 @@ export class Row extends Component<IProps, IState> {
 
 	closeMenu() {
 		this.setState({menuAnchor: null});
+	}
+
+	addFavorite() {
+		this.closeMenu();
+		let favorites: IMovie[] = [];
+		let storedFavs = localStorage.getItem('favorites');
+
+		if (storedFavs) {
+			favorites = [...JSON.parse(storedFavs)];
+		}
+
+		favorites.push(this.props.row);
+		localStorage.setItem('favorites', JSON.stringify(favorites));
+	}
+
+	removeFavorite() {
+		this.closeMenu();
+		let favorites: IMovie[] = [];
+		let storedFavs = localStorage.getItem('favorites');
+
+		if (storedFavs) {
+			favorites = [...JSON.parse(storedFavs)];
+			favorites = favorites.filter((movie: IMovie) => movie.id !== this.props.row.id);
+			localStorage.setItem('favorites', JSON.stringify(favorites));
+		}
+	}
+
+	addWatchLater() {
+		this.closeMenu();
+		let later: IMovie[] = [];
+		let storedLater = localStorage.getItem('later');
+
+		if (storedLater) {
+			later = [...JSON.parse(storedLater)];
+		}
+
+		later.push(this.props.row);
+		localStorage.setItem('later', JSON.stringify(later));
+	}
+
+	removeWatchLater() {
+		this.closeMenu();
+		let later: IMovie[] = [];
+		let storedLater = localStorage.getItem('later');
+
+		if (storedLater) {
+			later = [...JSON.parse(storedLater)];
+			later = later.filter((movie: IMovie) => movie.id !== this.props.row.id);
+			localStorage.setItem('later', JSON.stringify(later));
+		}
 	}
 
 	render() {
@@ -78,7 +153,7 @@ export class Row extends Component<IProps, IState> {
 						</IconButton>
 					</TableCell>
 					<TableCell component="th" scope="row">
-						<Link to={'movie/' + row.id}>{row.title}</Link>
+						<Link component={RouterLink} to={'movie/' + row.id}>{row.title}</Link>
 					</TableCell>
 					<Hidden smDown>
 						<TableCell align="right">{row.popularity}</TableCell>
@@ -93,18 +168,35 @@ export class Row extends Component<IProps, IState> {
 							  anchorEl={menuAnchor}
 							  open={Boolean(menuAnchor)}
 							  onClose={this.closeMenu}>
-							<MenuItem onClick={this.closeMenu}>
-								<IconButton aria-label="add to watch later">
-									<WatchLaterIcon/>
-								</IconButton>
-								Add to favourites
-							</MenuItem>
-							<MenuItem onClick={this.closeMenu}>
-								<IconButton aria-label="add to favourites">
-									<FavoriteIcon/>
-								</IconButton>
-								Save to Watch Later
-							</MenuItem>
+							{this.isFavorite ?
+								<MenuItem onClick={this.removeFavorite}>
+									<IconButton aria-label="remove favourite">
+										<WatchLaterIcon/>
+									</IconButton>
+									Remove favourite
+								</MenuItem> :
+								<MenuItem onClick={this.addFavorite}>
+									<IconButton aria-label="add to favourites">
+										<WatchLaterIcon/>
+									</IconButton>
+									Add to favourites
+								</MenuItem>
+
+							}
+							{this.isLater ?
+								<MenuItem onClick={this.removeWatchLater}>
+									<IconButton aria-label="remove from watch later list">
+										<FavoriteIcon/>
+									</IconButton>
+									Remove from Watch Later
+								</MenuItem>
+								:
+								<MenuItem onClick={this.addWatchLater}>
+									<IconButton aria-label="add to watch later list">
+										<FavoriteIcon/>
+									</IconButton>
+									Save to Watch Later
+								</MenuItem>}
 						</Menu>
 					</TableCell>
 				</TableRow>

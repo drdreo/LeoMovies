@@ -1,6 +1,6 @@
 import { Hidden, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
 import React, { Component } from 'react';
-import { IRow, Row } from './Row';
+import { IMovie, Row } from './Row';
 
 interface IProps {
 	data: any;
@@ -10,7 +10,6 @@ export class Results extends Component<IProps> {
 
 	render() {
 		const {data} = this.props;
-		console.log(data);
 		return (
 			<TableContainer component={Paper}>
 				<Table aria-label="collapsible table">
@@ -26,7 +25,7 @@ export class Results extends Component<IProps> {
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{data && data.map((row: IRow) => (
+						{data && data.map((row: IMovie) => (
 							<Row key={row.id} row={row}/>
 						))}
 					</TableBody>

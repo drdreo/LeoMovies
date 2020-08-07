@@ -1,3 +1,6 @@
+// discover all movies https://api.themoviedb.org/3/discover/movie?api_key=
+// get poster: poster_path  https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg
+
 const API_KEY = process.env.REACT_APP_TMDB_API_KEY;
 
 export function getMovies(query: string, page: number = 1) {

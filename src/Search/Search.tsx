@@ -1,8 +1,7 @@
 import React, { PureComponent } from 'react';
-import { Container, IconButton, InputBase, Paper } from '@material-ui/core';
-// discover all movies https://api.themoviedb.org/3/discover/movie?api_key=
-// get poster: poster_path  https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg
+import { Container, IconButton, InputBase, Paper, Link } from '@material-ui/core';
 import { Search as SearchIcon } from '@material-ui/icons';
+
 import './Search.scss';
 import { Results } from './Results/Results';
 import { getMovies } from '../movie.service';
@@ -39,38 +38,38 @@ export class Search extends PureComponent<IProps, IState> {
 	handleSubmit(event: React.FormEvent<any>) {
 		event.preventDefault();
 
-		this.setState({isLoading: true});
-		this.fetchMovies(this.state.searchString);
+		// check if the user entered a nice string
+		const query = this.state.searchString;
+		if (query.length > 0) {
+			this.setState({isLoading: true});
+			this.fetchMovies(query);
+		}
 	}
 
 	fetchMovies(query: string) {
-
-		// check if the user entered a nice string
-		if (query.length > 0) {
-			const queryString = encodeURI(query);
-			getMovies(queryString)
-				.then((res) => {
-						this.setState({
-							isLoading: false,
-							tmdbResponse: res,
-						});
-					}, (error) => {
-						this.setState({
-							isLoading: false,
-							error: error.message,
-						});
-					},
-				);
-		}
+		const queryString = encodeURI(query);
+		getMovies(queryString)
+			.then((res) => {
+					this.setState({
+						isLoading: false,
+						tmdbResponse: res,
+					});
+				}, (error) => {
+					this.setState({
+						isLoading: false,
+						error: error.message,
+					});
+				},
+			);
 	}
 
 	render() {
 		const {tmdbResponse, isLoading, error} = this.state;
 
 		return (
-			<Container className="app" maxWidth="md">
+			<Container maxWidth="md">
 				<h1>Welcome</h1>
-				<h3>Discover great movies from TMDB.</h3>
+				<h3>Discover great movies from <Link href="https://www.themoviedb.org/">TMDB</Link>.</h3>
 
 				{error &&
                 <p>{error}</p>

@@ -160,7 +160,7 @@ export class Row extends Component<IProps, IState> {
 					</Hidden>
 					<TableCell align="right">{row.release_date}</TableCell>
 					<TableCell align="right">
-						<IconButton aria-controls="simple-menu" aria-haspopup="true" aria-label="add to favourites"
+						<IconButton className="movie__menu" aria-controls="simple-menu" aria-haspopup="true"
 									onClick={this.openMenu}>
 							<MoreVertIcon/>
 						</IconButton>
@@ -171,13 +171,13 @@ export class Row extends Component<IProps, IState> {
 							{this.isFavorite ?
 								<MenuItem onClick={this.removeFavorite}>
 									<IconButton aria-label="remove favourite">
-										<WatchLaterIcon/>
+										<FavoriteIcon/>
 									</IconButton>
 									Remove favourite
 								</MenuItem> :
-								<MenuItem onClick={this.addFavorite}>
+								<MenuItem onClick={this.addFavorite} data-test-id="add-fav-btn">
 									<IconButton aria-label="add to favourites">
-										<WatchLaterIcon/>
+										<FavoriteIcon/>
 									</IconButton>
 									Add to favourites
 								</MenuItem>
@@ -186,14 +186,14 @@ export class Row extends Component<IProps, IState> {
 							{this.isLater ?
 								<MenuItem onClick={this.removeWatchLater}>
 									<IconButton aria-label="remove from watch later list">
-										<FavoriteIcon/>
+										<WatchLaterIcon/>
 									</IconButton>
 									Remove from Watch Later
 								</MenuItem>
 								:
-								<MenuItem onClick={this.addWatchLater}>
+								<MenuItem onClick={this.addWatchLater} data-test-id="add-later-btn">
 									<IconButton aria-label="add to watch later list">
-										<FavoriteIcon/>
+										<WatchLaterIcon/>
 									</IconButton>
 									Save to Watch Later
 								</MenuItem>}

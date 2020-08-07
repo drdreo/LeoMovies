@@ -80,9 +80,10 @@ export class Search extends PureComponent<IProps, IState> {
 						className="search__input"
 						placeholder="Search Movies"
 						inputProps={{'aria-label': 'search movies'}}
+						autoFocus
 						value={this.state.searchString} onChange={this.handleChange}
 					/>
-					<IconButton type="submit" aria-label="search">
+					<IconButton type="submit" aria-label="search" data-testid="search-btn">
 						<SearchIcon/>
 					</IconButton>
 				</Paper>

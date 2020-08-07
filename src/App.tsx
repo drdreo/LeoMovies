@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 
 // Material Components
-import { AppBar, BottomNavigation, BottomNavigationAction } from '@material-ui/core';
+import { BottomNavigation, BottomNavigationAction } from '@material-ui/core';
 import { Favorite as FavoriteIcon, Search as SearchIcon, WatchLater as WatchLaterIcon } from '@material-ui/icons';
 
 // Page Components

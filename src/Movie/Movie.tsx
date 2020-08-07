@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { RouteComponentProps } from 'react-router';
-import { getMovieById } from '../movie.service';
+import { getMovieByIdCached } from '../movie.service';
 
 import './Movie.scss';
 import { Container } from '@material-ui/core';
@@ -36,13 +36,13 @@ class Movie extends Component<IProps, IState> {
 
 	fetchMovie(id: number) {
 		this.setState({isLoading: true});
-		getMovieById(id)
-			.then((res) => {
+		getMovieByIdCached(id)
+			.then((res:any) => {
 					this.setState({
 						isLoading: false,
 						movie: res,
 					});
-				}, (error) => {
+				}, (error: Error) => {
 					this.setState({
 						isLoading: false,
 						error: error.message,

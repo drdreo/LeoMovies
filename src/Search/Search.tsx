@@ -4,7 +4,7 @@ import { Search as SearchIcon } from '@material-ui/icons';
 
 import './Search.scss';
 import { Results } from './Results/Results';
-import { getMovies } from '../movie.service';
+import { getMoviesCached } from '../movie.service';
 
 interface IProps {
 }
@@ -48,13 +48,13 @@ export class Search extends PureComponent<IProps, IState> {
 
 	fetchMovies(query: string) {
 		const queryString = encodeURI(query);
-		getMovies(queryString)
-			.then((res) => {
+		getMoviesCached(queryString)
+			.then((res: any) => {
 					this.setState({
 						isLoading: false,
 						tmdbResponse: res,
 					});
-				}, (error) => {
+				}, (error: Error) => {
 					this.setState({
 						isLoading: false,
 						error: error.message,

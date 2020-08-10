@@ -10,7 +10,7 @@ It uses data of [TMDB](https://www.themoviedb.org/documentation/api) and is host
 ### Used libs
 
 - Integrated [material-ui](https://material-ui.com/) as a style library (although i would have been faster using plain SCSS).
-- For fetching data, the native "fetch" API was used. 
+- For fetching data, the native "fetch" API was used. Calls are memoized to reduce number of requests needed. 
 - I haven't used [cypress](https://www.cypress.io/) with React yet, so i tried that for E2E testing. Cypress is great ❤️.
 - [Travis](https://travis-ci.com/github/drdreo/LeoMovies) is used for CI.
 

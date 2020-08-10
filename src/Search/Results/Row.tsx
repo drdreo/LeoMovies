@@ -30,6 +30,7 @@ export interface IMovie {
 
 interface IProps {
 	row: IMovie;
+	onActionSuccess: Function;
 }
 
 interface IState {
@@ -101,6 +102,7 @@ export class Row extends Component<IProps, IState> {
 
 		favorites.push(this.props.row);
 		localStorage.setItem('favorites', JSON.stringify(favorites));
+		this.props.onActionSuccess('Favourite added successfully.');
 	}
 
 	removeFavorite() {
@@ -112,6 +114,7 @@ export class Row extends Component<IProps, IState> {
 			favorites = [...JSON.parse(storedFavs)];
 			favorites = favorites.filter((movie: IMovie) => movie.id !== this.props.row.id);
 			localStorage.setItem('favorites', JSON.stringify(favorites));
+			this.props.onActionSuccess('Favourite removed.');
 		}
 	}
 
@@ -126,6 +129,7 @@ export class Row extends Component<IProps, IState> {
 
 		later.push(this.props.row);
 		localStorage.setItem('later', JSON.stringify(later));
+		this.props.onActionSuccess('Added to Watch Later successfully.');
 	}
 
 	removeWatchLater() {
@@ -137,6 +141,7 @@ export class Row extends Component<IProps, IState> {
 			later = [...JSON.parse(storedLater)];
 			later = later.filter((movie: IMovie) => movie.id !== this.props.row.id);
 			localStorage.setItem('later', JSON.stringify(later));
+			this.props.onActionSuccess('Removed from Watch Later.');
 		}
 	}
 

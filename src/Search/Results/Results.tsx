@@ -1,15 +1,47 @@
-import { Hidden, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
 import React, { Component } from 'react';
+import { Hidden, Paper, Snackbar, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
+import { Alert, AlertTitle } from '@material-ui/lab';
+
 import { IMovie, Row } from './Row';
+
 
 interface IProps {
 	data: any;
 }
 
-export class Results extends Component<IProps> {
+interface IState {
+	snackbarMessage: string;
+	timer: any;
+}
+
+export class Results extends Component<IProps, IState> {
+
+	constructor(props: any) {
+		super(props);
+
+		this.state = {snackbarMessage: '', timer: null};
+		this.handleActionSuccess = this.handleActionSuccess.bind(this);
+	}
+
+	componentWillUnmount(){
+		// prevent memory leak
+		clearTimeout(this.state.timer);
+	}
+
+	handleActionSuccess(message: string) {
+		this.setState({snackbarMessage: message});
+		clearTimeout(this.state.timer);
+		// auto clear snackbar after 3.5s
+		let timer = setTimeout(() => {
+			this.setState({snackbarMessage: ''});
+		}, 3500);
+		this.setState({timer});
+	}
 
 	render() {
 		const {data} = this.props;
+		const {snackbarMessage} = this.state;
+
 		return (
 			<TableContainer component={Paper}>
 				<Table aria-label="collapsible table">
@@ -26,10 +58,16 @@ export class Results extends Component<IProps> {
 					</TableHead>
 					<TableBody>
 						{data && data.map((row: IMovie) => (
-							<Row key={row.id} row={row}/>
+							<Row key={row.id} row={row} onActionSuccess={this.handleActionSuccess}/>
 						))}
 					</TableBody>
 				</Table>
+				<Snackbar open={snackbarMessage.length > 0}>
+					<Alert severity="success">
+						<AlertTitle>Success</AlertTitle>
+						{snackbarMessage}
+					</Alert>
+				</Snackbar>
 			</TableContainer>
 		);
 	}

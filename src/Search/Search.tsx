@@ -6,6 +6,8 @@ import './Search.scss';
 import { Results } from './Results/Results';
 import { getMoviesCached } from '../movie.service';
 
+import logo from './icon.png';
+
 interface IProps {
 }
 
@@ -68,7 +70,10 @@ export class Search extends PureComponent<IProps, IState> {
 
 		return (
 			<Container maxWidth="md">
-				<h1>Welcome</h1>
+
+				<div className="brand">
+					<img src={logo} className="brand__logo" alt="LeoMovies logo"/> <h1>LeoMovies</h1>
+				</div>
 				<h3>Discover great movies from <Link href="https://www.themoviedb.org/">TMDB</Link>.</h3>
 
 				{error &&

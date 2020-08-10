@@ -111,4 +111,4 @@ function MovieDetails(props: any) {
 }
 
 
-export const MovieWithRouter = withRouter(Movie);
+export default withRouter(Movie);

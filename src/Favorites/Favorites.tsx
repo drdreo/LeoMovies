@@ -10,7 +10,7 @@ interface IState {
 	favorites: IMovie[];
 }
 
-export class Favorites extends PureComponent<IProps, IState> {
+export default class Favorites extends PureComponent<IProps, IState> {
 
 	constructor(props: any) {
 		super(props);

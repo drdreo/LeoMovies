@@ -18,7 +18,7 @@ interface IState {
 	error?: string;
 }
 
-export class Search extends PureComponent<IProps, IState> {
+export default class Search extends PureComponent<IProps, IState> {
 
 	constructor(props: any) {
 		super(props);

@@ -11,7 +11,7 @@ interface IState {
 }
 
 
-export class Later extends PureComponent<IProps, IState> {
+export default class Later extends PureComponent<IProps, IState> {
 
 	constructor(props: any) {
 		super(props);

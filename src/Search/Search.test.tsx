@@ -1,11 +1,11 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { Search } from './Search';
+import Search from './Search';
 
 
 test('renders greeting', () => {
 	const {getByText} = render(<Search/>);
-	const navElement = getByText(/Welcome/i);
+	const navElement = getByText(/LeoMovies/i);
 	expect(navElement).toBeInTheDocument();
 });
 

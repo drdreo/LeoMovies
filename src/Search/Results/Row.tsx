@@ -213,7 +213,9 @@ export class Row extends Component<IProps, IState> {
 								<Typography variant="h6" gutterBottom component="div">
 									Overview
 								</Typography>
-								<img className="movie__poster" src={'https://image.tmdb.org/t/p/w185/' + row.poster_path} alt=""/>
+								<Link component={RouterLink} to={'movie/' + row.id}>
+									<img className="movie__poster" src={'https://image.tmdb.org/t/p/w185/' + row.poster_path} alt=""/>
+								</Link>
 								{row.overview}
 							</Box>
 						</Collapse>

@@ -1,5 +1,8 @@
 # LeoMovies
 
+![image](https://github.com/drdreo/leomovies/blob/master/demo.PNG)
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 The purpose of this project is to showcase my style of working with React for a recruitment assessment.  

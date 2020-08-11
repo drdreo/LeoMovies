@@ -4,3 +4,17 @@
   bottom: 0;
   box-shadow: -1px 11px 20px 0px black;
 }
+
+.background-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-height: 100%;
+  width: 100%;
+  height: auto;
+
+  z-index: -1;
+  background: url("./bg.jpeg") no-repeat center center fixed;
+  background-size: cover;
+}
+

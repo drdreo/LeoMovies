@@ -170,6 +170,7 @@ export class Row extends Component<IProps, IState> {
 							<MoreVertIcon/>
 						</IconButton>
 						<Menu variant="menu"
+							  disableScrollLock={true}
 							  anchorEl={menuAnchor}
 							  open={Boolean(menuAnchor)}
 							  onClose={this.closeMenu}>

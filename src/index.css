@@ -9,6 +9,11 @@ body {
     background-color: #f9f9f9;
 }
 
+html {
+    /*force scrollbar so the content jumping is prevented*/
+    overflow-y: scroll;
+}
+
 #root {
     /* navbar height fix*/
     padding-bottom: 72px;

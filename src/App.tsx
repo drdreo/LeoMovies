@@ -36,6 +36,8 @@ class App extends Component<IProps, IState> {
 
 		return (
 			<Suspense fallback={<span>Loading...</span>}>
+				<div className="background-wrapper"></div>
+
 				<Router>
 					<Switch>
 						<Route path="/movie/:movieId" component={MovieWithRouter}/>

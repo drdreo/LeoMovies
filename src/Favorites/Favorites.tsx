@@ -4,6 +4,7 @@ import { Container } from '@material-ui/core';
 import { IMovie } from '../Search/Results/Row';
 import { Results } from '../Search/Results/Results';
 
+
 interface IProps {
 }
 
@@ -25,13 +26,16 @@ export default class Favorites extends PureComponent<IProps, IState> {
 		const {favorites} = this.state;
 
 		return <React.Fragment>
-			{favorites.length > 0 ?
-				<Container className="app" maxWidth="md">
-					<h2>Your Favourites</h2>
-					<Results data={favorites}/>
-				</Container> :
-				<h2>You don't have any favourites yet</h2>
-			}
+			<Container maxWidth="md">
+				{favorites.length > 0 ?
+					<>
+						<h2>Your Favourites</h2>
+						<Results data={favorites}/>
+					</>
+					:
+					<h2>You don't have any favourites yet</h2>
+				}
+			</Container>
 		</React.Fragment>;
 	}
 }

@@ -24,13 +24,16 @@ export default class Later extends PureComponent<IProps, IState> {
 		const {later} = this.state;
 
 		return <React.Fragment>
-			{later.length > 0 ?
-				<Container className="app" maxWidth="md">
-					<h2>Your Watch Later Movies</h2>
-					<Results data={later}/>
-				</Container> :
-				<h2>You don't have any movies saved yet.</h2>
-			}
+			<Container maxWidth="md">
+				{later.length > 0 ?
+					<>
+						<h2>Your Watch Later Movies</h2>
+						<Results data={later}/>
+					</>
+					:
+					<h2>You don't have any movies saved yet.</h2>
+				}
+			</Container>
 		</React.Fragment>;
 	}
 }

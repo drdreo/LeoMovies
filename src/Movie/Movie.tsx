@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { RouteComponentProps } from 'react-router';
-import { Container } from '@material-ui/core';
+import { Container, Typography } from '@material-ui/core';
 
 import { getMovieByIdCached } from '../movie.service';
 import './Movie.scss';
@@ -100,13 +100,15 @@ function MovieDetails(props: any) {
 			</div>
 
 			{videoKey &&
-            <Container className="video-section" maxWidth="md">
-                <h2>Trailer</h2>
-                <div className='embed-container'>
-                    <iframe title="Trailer" src={'https://www.youtube.com/embed/' + videoKey} frameBorder="0"
-                            allow="accelerometer;  encrypted-media; " allowFullScreen></iframe>
-                </div>
-            </Container>}
+            <div className="video-section">
+                <Container maxWidth="md">
+                    <Typography variant="h5" component="h5">Trailer</Typography>
+                    <div className='embed-container'>
+                        <iframe title="Trailer" src={'https://www.youtube.com/embed/' + videoKey} frameBorder="0"
+                                allow="accelerometer;  encrypted-media; " allowFullScreen></iframe>
+                    </div>
+                </Container>
+            </div>}
 		</div>
 	);
 }

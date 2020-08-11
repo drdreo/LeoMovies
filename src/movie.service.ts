@@ -11,7 +11,6 @@ export function getMovies(query: string, page: number = 1) {
 		.then(res => res.json());
 }
 
-
 export function getMovieById(id: number) {
 	const API = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&append_to_response=videos`;
 	return fetch(API)

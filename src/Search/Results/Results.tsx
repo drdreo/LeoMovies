@@ -23,7 +23,7 @@ export class Results extends Component<IProps, IState> {
 		this.handleActionSuccess = this.handleActionSuccess.bind(this);
 	}
 
-	componentWillUnmount(){
+	componentWillUnmount() {
 		// prevent memory leak
 		clearTimeout(this.state.timer);
 	}
@@ -72,5 +72,3 @@ export class Results extends Component<IProps, IState> {
 		);
 	}
 }
-
-

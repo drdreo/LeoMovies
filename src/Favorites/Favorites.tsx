@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react';
+import { Container } from '@material-ui/core';
+
 import { IMovie } from '../Search/Results/Row';
 import { Results } from '../Search/Results/Results';
-import { Container } from '@material-ui/core';
 
 interface IProps {
 }

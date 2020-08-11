@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { RouteComponentProps } from 'react-router';
-import { getMovieByIdCached } from '../movie.service';
-
-import './Movie.scss';
 import { Container } from '@material-ui/core';
+
+import { getMovieByIdCached } from '../movie.service';
+import './Movie.scss';
+
 
 type TParams = { movieId: string };
 
@@ -37,7 +38,7 @@ class Movie extends Component<IProps, IState> {
 	fetchMovie(id: number) {
 		this.setState({isLoading: true});
 		getMovieByIdCached(id)
-			.then((res:any) => {
+			.then((res: any) => {
 					this.setState({
 						isLoading: false,
 						movie: res,
@@ -109,6 +110,5 @@ function MovieDetails(props: any) {
 		</div>
 	);
 }
-
 
 export default withRouter(Movie);

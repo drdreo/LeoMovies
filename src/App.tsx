@@ -6,8 +6,7 @@ import { BottomNavigation, BottomNavigationAction } from '@material-ui/core';
 import { Favorite as FavoriteIcon, Search as SearchIcon, WatchLater as WatchLaterIcon } from '@material-ui/icons';
 import './App.scss';
 
-
-// Page Components lzayloaded
+// Page Components lazyloaded
 const Favorites = React.lazy(() => import('./Favorites/Favorites'));
 const MovieWithRouter = React.lazy(() => import('./Movie/Movie'));
 const Later = React.lazy(() => import('./Later/Later'));

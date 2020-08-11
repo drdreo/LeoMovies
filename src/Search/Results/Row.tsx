@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 import { Box, Collapse, Hidden, IconButton, Link, Menu, MenuItem, TableCell, TableRow, Typography } from '@material-ui/core';
 import {
 	Favorite as FavoriteIcon,
@@ -9,7 +10,6 @@ import {
 } from '@material-ui/icons';
 
 import './Row.scss';
-import { Link as RouterLink } from 'react-router-dom';
 
 export interface IMovie {
 	popularity: number;

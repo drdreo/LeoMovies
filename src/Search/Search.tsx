@@ -70,7 +70,6 @@ export default class Search extends PureComponent<IProps, IState> {
 
 		return (
 			<Container maxWidth="md">
-
 				<div className="brand">
 					<img src={logo} className="brand__logo" alt="LeoMovies logo"/> <h1>LeoMovies</h1>
 				</div>
@@ -86,8 +85,8 @@ export default class Search extends PureComponent<IProps, IState> {
 						placeholder="Search Movies"
 						inputProps={{'aria-label': 'search movies'}}
 						autoFocus
-						value={this.state.searchString} onChange={this.handleChange}
-					/>
+						value={this.state.searchString}
+						onChange={this.handleChange}/>
 					<IconButton type="submit" aria-label="search" data-testid="search-btn">
 						<SearchIcon/>
 					</IconButton>

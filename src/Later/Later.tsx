@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
-import { IMovie } from '../Search/Results/Row';
 import { Container } from '@material-ui/core';
 import { Results } from '../Search/Results/Results';
+import { IMovie } from '../Search/Results/Row';
 
 interface IProps {
 }
@@ -9,7 +9,6 @@ interface IProps {
 interface IState {
 	later: IMovie[];
 }
-
 
 export default class Later extends PureComponent<IProps, IState> {
 

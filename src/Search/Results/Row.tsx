@@ -216,7 +216,7 @@ export class Row extends Component<IProps, IState> {
 								<Link component={RouterLink} to={'movie/' + row.id}>
 									<img className="movie__poster" src={'https://image.tmdb.org/t/p/w185/' + row.poster_path} alt=""/>
 								</Link>
-								{row.overview}
+								<Typography variant="body2">{row.overview}</Typography>
 							</Box>
 						</Collapse>
 					</TableCell>

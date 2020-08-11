@@ -84,8 +84,8 @@ function MovieDetails(props: any) {
 			<div className="movie-details"
 				 style={backgroundFilter}>
 				<div className="movie-details__wrapper">
-					<h2>{movie.title}</h2>
-					<h5>{movie.release_date} | {genres} | {movie.runtime}min</h5>
+					<Typography variant="h5">{movie.title}</Typography>
+					<Typography variant="caption">{movie.release_date} | {genres} | {movie.runtime}min</Typography>
 
 					<div className="movie-details__group">
 						{movie.poster_path &&
@@ -93,7 +93,7 @@ function MovieDetails(props: any) {
                              alt="Movie poster"/>
 						}
 						<div className="movie-details__overview">
-							{movie.overview}
+							<Typography variant="body2">{movie.overview}</Typography>
 						</div>
 					</div>
 				</div>

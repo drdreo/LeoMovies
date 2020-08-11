@@ -43,14 +43,14 @@ export class Results extends Component<IProps, IState> {
 		const {snackbarMessage} = this.state;
 
 		return (
-			<TableContainer component={Paper}>
+			<TableContainer component={Paper} style={{marginTop: "24px"}}>
 				<Table aria-label="collapsible table">
 					<TableHead>
 						<TableRow>
 							<TableCell/>
 							<TableCell>Title</TableCell>
 							<Hidden smDown>
-								<TableCell align="right">Popularity</TableCell>
+								<TableCell align="right">Rating</TableCell>
 							</Hidden>
 							<TableCell align="right">Release</TableCell>
 							<TableCell align="right">Actions</TableCell>

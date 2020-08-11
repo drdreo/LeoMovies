@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Container, IconButton, InputBase, Link, Paper } from '@material-ui/core';
+import { Container, IconButton, InputBase, Link, Paper, Typography } from '@material-ui/core';
 import { Search as SearchIcon } from '@material-ui/icons';
 
 import './Search.scss';
@@ -71,10 +71,12 @@ export default class Search extends PureComponent<IProps, IState> {
 		return (
 			<Container maxWidth="md">
 				<div className="brand">
-					<img src={logo} className="brand__logo" alt="LeoMovies logo"/> <h1>LeoMovies</h1>
+					<img src={logo} className="brand__logo" alt="LeoMovies logo"/>
+					<h1>LeoMovies</h1>
 				</div>
-				<h3>Discover great movies from <Link href="https://www.themoviedb.org/">TMDB</Link>.</h3>
-
+				<Typography variant="h5" component="h2" style={{marginBottom: "12px"}}>
+					Discover great movies from <Link href="https://www.themoviedb.org/">TMDB</Link>.
+				</Typography>
 				{error &&
                 <p>{error}</p>
 				}

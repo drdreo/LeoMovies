@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Container } from '@material-ui/core';
+import { Container, Typography } from '@material-ui/core';
 
 import { IMovie } from '../Search/Results/Row';
 import { Results } from '../Search/Results/Results';
@@ -26,14 +26,14 @@ export default class Favorites extends PureComponent<IProps, IState> {
 		const {favorites} = this.state;
 
 		return <React.Fragment>
-			<Container maxWidth="md">
+			<Container maxWidth="md" className="container">
 				{favorites.length > 0 ?
 					<>
-						<h2>Your Favourites</h2>
+						<Typography variant="h4" component="h1">Your Favourites</Typography>
 						<Results data={favorites}/>
 					</>
 					:
-					<h2>You don't have any favourites yet</h2>
+					<Typography variant="h4" component="h1">You don't have any favourites yet</Typography>
 				}
 			</Container>
 		</React.Fragment>;

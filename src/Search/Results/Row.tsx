@@ -161,7 +161,7 @@ export class Row extends Component<IProps, IState> {
 						<Link component={RouterLink} to={'movie/' + row.id}>{row.title}</Link>
 					</TableCell>
 					<Hidden smDown>
-						<TableCell align="right">{row.popularity}</TableCell>
+						<TableCell align="right">{row.vote_average}</TableCell>
 					</Hidden>
 					<TableCell align="right">{row.release_date}</TableCell>
 					<TableCell align="right">

@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Container } from '@material-ui/core';
+import { Container, Typography } from '@material-ui/core';
 import { Results } from '../Search/Results/Results';
 import { IMovie } from '../Search/Results/Row';
 
@@ -24,14 +24,14 @@ export default class Later extends PureComponent<IProps, IState> {
 		const {later} = this.state;
 
 		return <React.Fragment>
-			<Container maxWidth="md">
+			<Container maxWidth="md" className="container">
 				{later.length > 0 ?
 					<>
-						<h2>Your Watch Later Movies</h2>
+						<Typography variant="h4" component="h1">Your Watch Later Movies</Typography>
 						<Results data={later}/>
 					</>
 					:
-					<h2>You don't have any movies saved yet.</h2>
+					<Typography variant="h4" component="h1">You don't have any movies saved yet.</Typography>
 				}
 			</Container>
 		</React.Fragment>;
